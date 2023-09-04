@@ -1,0 +1,12 @@
+#!/bin/bash
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 <file>"
+  exit 1
+fi
+file="$1"
+if [ ! -e "$file" ]; then
+  echo "File not found: $file"
+  exit 1
+fi
+decoded_message=$(awk '{print substr($0, 1, 1)}' "$file" | tr -d '\n')
+echo -e "$decoded_message\n"
