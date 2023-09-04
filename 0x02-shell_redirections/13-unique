@@ -1,0 +1,11 @@
+#!/bin/bash
+IFS=$'\n' read -r -d '' -a words
+declare -A words_c
+for word in "${words[@]}"; do
+  ((words_c["$word"]++))
+done
+for word in "${words[@]}"; do
+  if [ "${words_c["$word"]}" -eq 1 ]; then
+    echo "$word"
+  fi
+done | sort
